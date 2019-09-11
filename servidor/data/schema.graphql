@@ -6,7 +6,7 @@
         edad: Int
         tipo: TipoCliente
         pedidos: [Pedido]
-        emails: [Email]
+        email: String
     }
     type Pedido {
         producto: String
@@ -43,7 +43,7 @@
         edad: Int!
         tipo: TipoCliente!
         pedidos: [PedidoInput]
-        emails: [EmailInput]
+        email: String
     }
 
     type Mutation {
