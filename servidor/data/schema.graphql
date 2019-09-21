@@ -23,7 +23,7 @@
 
     enum TipoCliente {
         BASICO
-        PREMIUN
+        PREMIUM
     }
 
     input PedidoInput {

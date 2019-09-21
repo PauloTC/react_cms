@@ -4,7 +4,7 @@ export const NUEVO_CLIENTE = gql`
     mutation crearCliente($input : ClienteInput) {
         crearCliente( input: $input ) {
             id
-                nombre
+            nombre
             apellido
         }
     }
