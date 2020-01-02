@@ -190,7 +190,7 @@ class NuevoCliente extends Component {
                                                 </select>
                                             </div>
                                         </div>
-                                        <button type="submit" className="btn btn-success float-right">Guardar Cambios</button>
+                                        <button type="submit" className="btn btn-success float-right">Agregar Cliente</button>
                                     </form>
                             )
                         }
