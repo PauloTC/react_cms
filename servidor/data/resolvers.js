@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { Clientes } from './db';
+import { Clientes, Productos } from './db';
 import { rejects } from 'assert';
 
 export const resolvers = {
@@ -23,7 +23,10 @@ export const resolvers = {
                     else resolve( count )
                 } )
             } )
-        } )
+        }),
+        obtenerProductos: ( root, { limite, offset } ) => {
+            return Productos.find().limit(limite).skip(offset)
+        }
     },
     Mutation: {
         crearCliente : (root, { input }) => {
@@ -58,6 +61,22 @@ export const resolvers = {
                 Clientes.findOneAndRemove( {_id: id }, (error) => {
                     if(error) rejects(error)
                     else resolve("se eliminó el registro correctamente")
+                } )
+            } )
+        },
+        nuevoProducto: ( root, { input }) => {
+            const  nuevoProducto = new Productos({
+                nombre: input.nombre,
+                precio: input.precio,
+                stock: input.stock
+            });
+            //MongoDB crea automaticamente el ID q se asigna al objeto
+            nuevoProducto.id = nuevoProducto._id;
+
+            return new Promise(( resolve, object ) => {
+                nuevoProducto.save(  (error) => {
+                    if(error) rejects(error)
+                    else resolve(nuevoProducto)
                 } )
             } )
         }
