@@ -9,6 +9,7 @@ import Paginador from './Paginador';
 
 class Clientes extends Component {
 
+    limite = 5;
 
     state = {
         paginador: {
@@ -17,11 +18,30 @@ class Clientes extends Component {
         }
     }
 
+    paginaAnterior = () => {
+        this.setState({
+            paginador: {
+                offset : this.state.paginador.offset - this.limite,
+                actual : this.state.paginador.actual - 1
+            }
+        })
+    }
+    paginaSiguiente = () => {
+        this.setState({
+            paginador: {
+                offset : this.state.paginador.offset + this.limite,
+                actual : this.state.paginador.actual + 1
+            }
+        })
+    }
 
     render () {
         return (
              //se convierte en un class component porque necesito manejar estados para el paginador
-            <Query  query={ CLIENTES_QUERY } pollInterval={1000}  >
+            <Query  
+                query={ CLIENTES_QUERY } 
+                pollInterval={1000} 
+                variables={{  limite: this.limite, offset: this.state.paginador.offset  }}  >
                 {({  loading, error, data, startPolling, stopPolling  }) => {
                     if(loading) return "Cargando ...";
                     if(error) return `Error: ${ error.message }`;
@@ -67,6 +87,9 @@ class Clientes extends Component {
                             <Paginador 
                                     actual = { this.state.paginador.actual }
                                     totalClientes = { data.totalClientes }
+                                    limite = { this.limite }
+                                    paginaAnterior = { this.paginaAnterior }
+                                    paginaSiguiente = { this.paginaSiguiente }
                             />
                         </Fragment>
                     )
