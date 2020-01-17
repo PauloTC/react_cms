@@ -31,6 +31,7 @@
 
         # productos
         obtenerProductos(  limite: Int, offset: Int  ) : [Producto]
+        obtenerProducto(  id:ID ) : Producto
 
     }
 
@@ -72,4 +73,6 @@
         eliminarCliente( id: ID! ) : String 
         # productos
         nuevoProducto(input: ProductoInput) : Producto
+        actualizarProducto( input: ProductoInput) : Producto
+        eliminarProducto( id:ID! ) : String
     }
