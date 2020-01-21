@@ -28,3 +28,11 @@ export const ELIMINAR_CLIENTE = gql`
         eliminarCliente( id: $id )
      }
 `
+
+export const NUEVO_PRODUCTO = gql `
+    mutation nuevoProducto( $input: ProductoInput ){
+        nuevoProducto( input: $input ){
+            nombre
+        }
+    }
+`;
