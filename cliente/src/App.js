@@ -13,6 +13,7 @@ import NuevoProducto from './componentes/Productos/NuevoProducto'
 import Productos from './componentes/Productos/Productos'
 import EditarProducto from './componentes/Productos/EditarProducto';
 
+import NuevoPedido from './componentes/Pedidos/NuevoPedido'
 
 const client = new ApolloClient({
   uri: "http://localhost:4000/graphql",
@@ -33,14 +34,14 @@ function App() {
                     <Header />
                     <div className="container" >
                         <Switch>
-                            <Route  exact path="/" component={ Clientes }   ></Route>
-                            <Route  exact path="/cliente/editar/:id" component={ EditarCliente }   ></Route>
-                            <Route  exact path="/cliente/nuevo" component={ NuevoCliente }   ></Route>
+                            <Route  exact path="/clientes" component={ Clientes }   ></Route>
+                            <Route  exact path="/clientes/editar/:id" component={ EditarCliente }   ></Route>
+                            <Route  exact path="/clientes/nuevo" component={ NuevoCliente }   ></Route>
 
                             <Route  exact path="/productos/nuevo" component={  NuevoProducto }  ></Route>
                             <Route  exact path="/productos" component={  Productos }  ></Route>
                             <Route  exact path="/productos/editar/:id" component={  EditarProducto }  ></Route>
-
+                            <Route  exact path="/pedidos/nuevo/:id" component={  NuevoPedido }  ></Route>
                         </Switch>
                     </div>
                 </Fragment>

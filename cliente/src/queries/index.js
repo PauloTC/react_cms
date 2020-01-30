@@ -21,19 +21,22 @@ export const CLIENTE_QUERY = gql `
             empresa
             edad
             tipo
-            email
+            emails {
+                email
+            }
         }
     }
 `;
 
 export const OBTENER_PRODUCTOS = gql`
-    query {
-        obtenerProductos {
+    query ObtenerProductos( $limite: Int, $offset: Int) {
+        obtenerProductos( limite: $limite, offset:$offset ) {
             id
             nombre
             precio
             stock
         }
+        totalProductos
     }
 `;
 

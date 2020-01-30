@@ -47,12 +47,12 @@ class NuevoCliente extends Component {
         let respuesta = ( error ) ? <p className="alert alert-danger p-3 text-center" > Todos los campos son obligatorios </p> : '';
         return (
             <Fragment>
-                <h3 className="text-center" >Nuevo Cliente</h3>
+                <h2 className="text-center" >Nuevo Cliente</h2>
                 { respuesta }
                 <div className="row justify-content-center"  >
                     <Mutation  
                             mutation={NUEVO_CLIENTE} 
-                            onCompleted = { () => this.props.history.push('/') }
+                            onCompleted = { () => this.props.history.push('/clientes') }
                         >
                         {
                             crearCliente => (

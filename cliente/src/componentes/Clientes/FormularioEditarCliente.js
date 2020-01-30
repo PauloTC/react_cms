@@ -7,8 +7,7 @@ class FormularioEditar extends Component {
 
     state =  {
         cliente: this.props.cliente,
-        emails: [],
-        //emails: this.props.cliente.emails
+        emails: this.props.cliente.emails
     }
 
     nuevoCampo = () => {
@@ -42,14 +41,14 @@ class FormularioEditar extends Component {
                 <Mutation 
                     mutation={ ACTUALIZAR_CLIENTE } 
                     onCompleted = { () => this.props.refetch().then( ()=> {
-                        this.props.history.push('/') 
+                        this.props.history.push('/clientes') 
                     }) }>
                     { actualizarCliente => (
                         <form className="col-md-8 m-3"  onSubmit= { e => {
                             e.preventDefault();
-                            const { id, nombre, apellido, empresa, email, edad, tipo } = this.state.cliente;
+                            const { id, nombre, apellido, empresa, edad, tipo } = this.state.cliente;
                             
-                            //const { emails } = this.state.cliente
+                            const { emails } = this.state.cliente
 
                             const input = {
                                 id,
@@ -58,7 +57,7 @@ class FormularioEditar extends Component {
                                 empresa,
                                 edad: Number(edad),
                                 tipo,
-                                email
+                                emails: Array
                             }
 
                             actualizarCliente({
