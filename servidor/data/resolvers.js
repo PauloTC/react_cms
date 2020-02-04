@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { Clientes, Productos } from './db';
+import { Clientes, Productos, Pedidos } from './db';
 import { rejects } from 'assert';
 
 export const resolvers = {
@@ -111,6 +111,25 @@ export const resolvers = {
                     else resolve("El producto se eliminó correctamente")
                 } )
             } )
+        },
+        nuevoPedido: ( root, { input }) => {
+            const nuevoPedido = new Pedidos({
+                pedido: input.pedido,
+                total: input.total,
+                fecha: new Date(),
+                cliente: input.cliente,
+                estado: "Pendiente" //estado inicial
+            });
+
+            nuevoPedido.id = nuevoPedido._id;
+
+            return new Promise((  resolve, object ) => {
+                nuevoPedido.save(( error ) => {
+                    if(error) rejects(error)
+                    else resolve(nuevoPedido)
+                })
+            })
+
         }
     }
 }

@@ -5,7 +5,7 @@ const Resumen = (props) => {
 
     const  productos  = props.productos
 
-    if( productos.length ===0)  return null;
+    if( !productos )  return null;
 
     return(
         <Fragment>
@@ -23,7 +23,14 @@ const Resumen = (props) => {
                 <tbody>
                     {
                         productos.map(( producto, index ) => (
-                            <Producto />
+                            <Producto
+                                key={ producto.id } 
+                                id = { producto.id }
+                                producto= { producto }
+                                index = { index}
+                                actualizarCantidad = { props.actualizarCantidad }
+                                eliminarProducto = { props.eliminarProducto }
+                                />
                         ))
                     }
                 </tbody>
